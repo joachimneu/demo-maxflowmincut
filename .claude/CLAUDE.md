@@ -4,8 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Purpose
 
-A teaching demo of AI auto-formalization: the Max-Flow Min-Cut theorem from the
-Stanford CS161 Lecture 16 notes (`notes/*.pdf`) is mechanized in Lean 4 + Mathlib.
+A teaching demo of AI auto-formalization: the Max-Flow Min-Cut theorem and the
+Ford–Fulkerson algorithm (integer capacities) from the
+Stanford CS161 Lecture 16 notes (`notes/*.pdf`) are mechanized in Lean 4 + Mathlib.
 The Lean sources under `MaxFlowMinCut/` are **generated live in class** by the
 project skills. They're not hand-maintained, and the repo is routinely reset with
 git between runs.
@@ -44,7 +45,7 @@ generic infrastructure (`Finset.sum`, `Relation.ReflTransGen`, compactness, ...)
 ## Toolchain notes
 
 - Lean `v4.35.0` (`lean-toolchain`), Mathlib pinned to tag `v4.35.0`. `autoImplicit = false`.
-- Reals are imported from `Mathlib.Basic.Real.Basic` (`Mathlib.Data.Real.Basic` is deprecated).
 - Warnings that Mathlib "is designed for use with the module system" are harmless.
 - To find a lemma's module: `grep -rn "theorem <name>" .lake/packages/mathlib/Mathlib`
   (e.g. `Finset.sum_comm` lives in `Mathlib.Algebra.BigOperators.Group.Finset.Sigma`).
+- `List.Chain'` has been renamed to `List.IsChain` (Batteries).
