@@ -1,1 +1,1 @@
-Use /my-mechanize to formalize the max-flow min-cut theorem from the lecture notes in notes/ in Lean.
+Use /my-mechanize to formalize the max-flow min-cut theorem and the Ford-Fulkerson algorithm from the lecture notes in notes/ in Lean.

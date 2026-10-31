@@ -17,7 +17,7 @@ git checkout HEAD -- lakefile.toml lake-manifest.json lean-toolchain
 rm -rf .lake/build
 
 # Scratch files used by the skills
-rm -rf /tmp/scrutiny /tmp/check.lean
+rm -rf /tmp/scrutiny /tmp/check.lean /tmp/ff_demo.lean
 
 echo "Demo reset. Remaining changes vs HEAD (should be empty):"
 git status --short
