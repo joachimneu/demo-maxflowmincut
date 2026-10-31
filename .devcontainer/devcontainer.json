@@ -1,0 +1,19 @@
+{
+  "name": "Claude Container",
+  "build": { "dockerfile": "Dockerfile" },
+  "remoteUser": "ubuntu",
+  "initializeCommand": "mkdir -p ${localWorkspaceFolder}/.claude-devcontainer",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.claude-devcontainer,target=/home/ubuntu/.claude,type=bind"
+  ],
+  "postCreateCommand": ".devcontainer/setup.sh",
+  "waitFor": "postCreateCommand",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "leanprover.lean4"
+      ]
+    }
+  }
+}

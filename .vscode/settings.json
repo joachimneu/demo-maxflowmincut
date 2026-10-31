@@ -1,0 +1,7 @@
+{
+    "[plaintext]": {
+        "editor.wordWrap": "on",
+    },
+    "files.trimTrailingWhitespace": true,
+    "diffEditor.wordWrap": "on"
+}
