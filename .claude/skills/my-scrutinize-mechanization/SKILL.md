@@ -141,8 +141,25 @@ These are "unit tests for definitions". In `/tmp/scrutiny/Example.lean`, model F
 `Fin 5` with `s=0, a=1, b=2, c=3, t=4` and capacities
 `s→a 10, s→c 11, a→b 5, a→c 12, c→b 3, b→t 100, c→t 10` (all others 0), e.g. via
 `![![…], …]`. Adapt to the actual names. Use `#eval` to compute numbers, and
-`decide` (after unfolding definitions) or `norm_num`/`simp [Fin.sum_univ_five]` to prove them:
-- The algorithm: `fordFulkerson` returns a flow (`IsFlow`, by `decide`) of value **18**.
+`decide` (after unfolding definitions) or `norm_num`/`simp [Fin.sum_univ_five]` to prove them.
+Practical notes, so the file compiles on the first try:
+- `![…]` needs `import Mathlib.Data.Fin.VecNotation` (the project may not import it;
+  without it `!` parses as boolean negation and every matrix fails to elaborate).
+- Predicates without a `Decidable` instance (e.g. `IsCut`, `IsFlow`, `IsMinCut`) must be
+  unfolded first: `by unfold IsCut; decide`, `by unfold IsMinCut IsCut cutCapacity; decide`.
+- `decide`/`decide +kernel` usually **cannot** reduce the algorithm itself: e.g. Mathlib's
+  `List.permutations` is defined by well-founded recursion and gets stuck. Don't spend time
+  on it, and never fall back to `native_decide`. Check the algorithm's output with `#eval`
+  (fine, provided A2 found no `implemented_by`), and obtain a kernel-checked proof of the
+  same fact *via the headline theorems* (see the first bullet).
+
+Tests:
+- The algorithm: `#eval value fig1 (fordFulkerson fig1)` prints **18** (also `#eval` the flow
+  matrix). Kernel-checked version: `IsFlow` is `(fordFulkerson_isMaxFlow fig1).1`, and the
+  value follows from `max_flow_min_cut fig1 (fordFulkerson_isMaxFlow fig1) hmin` with
+  `hmin : IsMinCut fig1 {0, 1, 3}` (by `decide`, see B4) and `cutCapacity fig1 {0,1,3} = 18`
+  (by `decide`), closed with `omega`. Also check an explicit flow of value 18 by `decide`
+  (e.g. the `#eval`ed matrix, copied in as a literal): it's reused in B4.
 - The sample flow (`s→a 5, s→c 11, a→b 5, a→c 0, c→b 1, b→t 6, c→t 10`) is a flow of value **16**.
 - The cut `S = {s, a, c}` has capacity **18**, and `S = {s, c}` has capacity **23** (the notes
   stress that the backward edge `a→c` is not counted).
@@ -150,7 +167,9 @@ These are "unit tests for definitions". In `/tmp/scrutiny/Example.lean`, model F
   so `¬ IsFlow` must be provable.
 - Extra stress test for the general definitions: a tiny network with an edge **into**
   `s` and a pair of **antiparallel** edges. Check that the value and the algorithm's result
-  match a hand computation.
+  match a hand computation (`#eval`, plus the theorem-based proof as above with a min cut
+  found by hand). E.g. `Fin 3`, `s=0, x=1, t=2`, `s→x 3, x→s 2, x→t 2, s→t 1`: max flow 3,
+  min cut `{s, x}`; the flow `s→x 3, x→s 2, x→t 1` has value `3 − 2 = 1` (out minus in).
 If any expected number fails, find what the definition computes instead
 (`#eval` it) and report the discrepancy.
 
