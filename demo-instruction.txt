@@ -1,5 +1,1 @@
 Use /my-mechanize to formalize the max-flow min-cut theorem from the lecture notes in notes/ in Lean.
-
-Use /my-mechanize-srsly to formalize the max-flow min-cut theorem from the lecture notes in notes/ in Lean.
-
-Use /my-scrutinize-mechanization to check whether the Lean mechanization in MaxFlowMinCut/ is correct and faithful to the notes.
