@@ -1,7 +1,6 @@
 ---
 name: my-scrutinize-mechanization
-description: Audit the Lean mechanization in MaxFlowMinCut/ against the notes. Runs Lean-side checks (sorry, axioms, cheats, statement provenance) and semantic checks (definition faithfulness, sanity tests on concrete examples, non-vacuity, mutation tests), explaining each check and its result.
-disable-model-invocation: true
+description: Audit the Lean mechanization in MaxFlowMinCut/ against the notes. Runs Lean-side checks (sorry, axioms, cheats, statement provenance) and semantic checks (definition faithfulness, sanity tests on concrete examples, non-vacuity, mutation tests), explaining each check and its result. Use only when the user explicitly names this skill.
 ---
 
 # Scrutinize the mechanization

@@ -1,7 +1,6 @@
 ---
 name: my-mechanize
-description: Auto-formalize the Max-Flow Min-Cut theorem from notes/ in Lean 4 + Mathlib, laid out as MaxFlowMinCut/{Definitions,Theorems}.lean + MaxFlowMinCut/Proofs/.
-disable-model-invocation: true
+description: Auto-formalize the Max-Flow Min-Cut theorem from notes/ in Lean 4 + Mathlib, laid out as MaxFlowMinCut/{Definitions,Theorems}.lean + MaxFlowMinCut/Proofs/. Use only when the user explicitly names this skill.
 ---
 
 # Mechanize Max-Flow Min-Cut
