@@ -10,14 +10,12 @@ The Lean sources under `MaxFlowMinCut/` are **generated live in class** by the
 project skills. They're not hand-maintained, and the repo is routinely reset with
 git between runs.
 
-## Skills (`.claude/skills/`, user-invoked only)
+## Skills
 
-- `/my-mechanize`, `/my-mechanize-srsly`: produce the mechanization in `MaxFlowMinCut/`.
-- `/my-scrutinize-mechanization`: an independent audit of `MaxFlowMinCut/` against the notes
-  (Lean-side and semantic checks). Its experiments go in `/tmp/scrutiny/`, never in the library.
-
-Follow the invoked skill's instructions; they take precedence over general habits.
-Skills don't commit; the instructor manages git.
+The demo is driven by project skills in `.claude/skills/`. Invoke a skill only
+when the user names it, and follow its instructions; they take precedence over
+general habits. Don't read the files of skills other than the one invoked. Skills
+don't commit; the instructor manages git and resets with `./reset-demo.sh`.
 
 ## Layout of the mechanization
 

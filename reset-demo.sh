@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Reset the repo to the state before any /my-mechanize* or /my-scrutinize-mechanization run.
+# Reset the repo to the state before running any of the demo skills.
 # Removes the generated Lean sources and build outputs; keeps the Mathlib packages
 # (.lake/packages) so the next run doesn't have to re-download them.
 set -euo pipefail
@@ -11,7 +11,7 @@ git clean -fdxq -- MaxFlowMinCut
 rm -rf MaxFlowMinCut
 
 # Project files a skill may have touched during setup
-git checkout HEAD -- lakefile.toml lake-manifest.json lean-toolchain .gitignore
+git checkout HEAD -- lakefile.toml lake-manifest.json lean-toolchain
 
 # Build outputs of the project itself (not of Mathlib)
 rm -rf .lake/build
